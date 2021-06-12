@@ -1,4 +1,5 @@
 from django.contrib.auth.password_validation import validate_password
+from django.forms import ChoiceField
 from rest_framework import serializers
 from Users.models import User
 
@@ -32,3 +33,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
+class UserSerializer(serializers.ModelSerializer):
+    role = ChoiceField(choices=User.ROLE)
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'first_name', 'last_name', 'role', 'email']
+
+

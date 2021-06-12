@@ -1,4 +1,5 @@
 from django.db import models
+from Users.models import User
 from PIL import Image
 
 
@@ -10,13 +11,15 @@ class Animal(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     description = models.TextField(null=True, blank=True)
     available = models.BooleanField(default=True)
-    ANIMAL_TYPE = (
-        ('Kitty', 'cat'),
-        ('Doggy', 'dog'),
-        ('Smaller animals', 'small'),
-    )
-    type = models.CharField(max_length=20, choices=ANIMAL_TYPE, default='cat')
+    # ANIMAL_TYPE = (
+    #     ('Kitty', 'cat'),
+    #     ('Doggy', 'dog'),
+    #     ('Smaller animals', 'small'),
+    # )
+    # type = models.CharField(max_length=20, choices=ANIMAL_TYPE, default='cat')
+    type = models.CharField(max_length=20, default='cat')
     image = models.CharField(max_length=100, default='')
+    reservedby = models.ForeignKey(User, related_name='animals', on_delete=models.SET_NULL, blank=True, null=True)
 
     # def save(self):
     #     super().save()
