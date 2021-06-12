@@ -1,0 +1,33 @@
+{
+  "name": "Fredka",
+  "age": 2,
+  "weight": 2.0,
+  "height": 4.6,
+  "description": "Stupid but adorable",
+  "type": "cat"
+}
+
+
+{
+    "username":"test",
+    "password":"P@ssword123",
+    "first_name":"Yuuji",
+    "last_name":"Hayato",
+    "email":"yuuji1234@ww.com"
+}
+
+{
+    "password": "jujutsukaisen",
+    "username": "admin",
+    "first_name": "Yuuji",
+    "last_name": "Itadori",
+    "email": "yuuji123@lol.com",
+}
+
+{
+    "password": "youknownothing",
+    "username": "jonsnow",
+    "first_name": "Jon",
+    "last_name": "Snow",
+    "email": "jonsnow@winterfell.com"
+}
