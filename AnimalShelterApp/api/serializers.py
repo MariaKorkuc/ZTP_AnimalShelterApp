@@ -37,7 +37,7 @@ class AnimalReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Animal
-        fields = ['available']
+        fields = ['id', 'available']
 
     # def update(self, instance, validated_data):
     #     instance.available = False

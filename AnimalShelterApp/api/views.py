@@ -46,6 +46,7 @@ def animal_detail(request, pk):
         return JsonResponse({'message': 'The animal does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
     user = request.user
+    print(type(animal.weight))
 
     if request.method == 'GET':
         serializer = AnimalSerializer(animal)
@@ -55,7 +56,7 @@ def animal_detail(request, pk):
         serializer = AnimalReservationSerializer(animal, data=request.data)
         if serializer.is_valid():
             serializer = serializer.save(reservedby=request.user)
-            return Response(serializer.data)
+            return Response(request.data)
         else:
             data = serializer.errors
         return Response(data)
