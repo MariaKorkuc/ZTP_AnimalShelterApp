@@ -6,7 +6,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from AnimalShelterApp.api.serializers import AnimalSerializer
+from AnimalShelterApp.api.serializers import AnimalSerializer, AnimalReservationSerializer
 from AnimalShelterApp.models import Animal
 
 
@@ -46,10 +46,20 @@ def animal_detail(request, pk):
         return JsonResponse({'message': 'The animal does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
     user = request.user
+    print(type(animal.weight))
 
     if request.method == 'GET':
         serializer = AnimalSerializer(animal)
         return Response(serializer.data)
+
+    elif user.role == user.USER and request.method == 'PUT':
+        serializer = AnimalReservationSerializer(animal, data=request.data)
+        if serializer.is_valid():
+            serializer = serializer.save(reservedby=request.user)
+            return Response(request.data)
+        else:
+            data = serializer.errors
+        return Response(data)
 
     elif (user.role == user.ADMIN or user.role == user.WORKER):
         if request.method == 'PUT':
